@@ -10,6 +10,8 @@ namespace MidTermPOS
     {
         static void Main(string[] args)
         {
+
+            //lets do this shit!
         }
     }
 }
