@@ -10,6 +10,7 @@ namespace MidTermPOS
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Midterm");
         }
     }
 }
