@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 namespace MidTermPOS
 {
-    class SteroidsDB
+    class StimulantsDB
     {
-        List<DrugType> DrugName = new List<DrugType>();
-
-        public SteroidsDB()
+        public List<DrugType> DrugName = new List<DrugType>();
+        public StimulantsDB()
         {
-            DrugName.Add(new DrugType("Better Hair", 4.99 , "Hair growth treatment clinically proven to grow hair in 1 week guaranteed!"));
-            DrugName.Add(new DrugType("Supa Strength", 9.99, "Need to look buff for your lady? Look no further, Supa Strength will give you the muscles you need to impress"));
-            DrugName.Add(new DrugType("Test-O", 3.99,"Lacking energy? The drive to get things done? Test-O will boost your levels to 11"));
-            DrugName.Add(new DrugType("Proizon", 3.50, "Does stuff that no one really knows."));
+            DrugName.Add(new DrugType("Adderall", 5.44, "Amphetamine/dextroamphetamine belongs to a class of drugs known as stimulants. It can help increase your ability to pay attention, stay focused on an activity, and control behavior problems."));
+            DrugName.Add(new DrugType("Ritalin", 3.45, " Methylphenidate belongs to a class of drugs known as stimulants. It can help increase your ability to pay attention, stay focused on an activity, and control behavior problems. "));
+            DrugName.Add(new DrugType("Concerta", 2.56, "This medication is used to treat attention deficit hyperactivity disorder - ADHD. It works by changing the amounts of certain natural substances in the brain."));
+            DrugName.Add(new DrugType("Focalin",1.45, " Dexmethylphenidate belongs to a class of drugs known as stimulants. It can help increase your ability to pay attention, stay focused on an activity, and control behavior problems."));
         }
-
     }
 }
