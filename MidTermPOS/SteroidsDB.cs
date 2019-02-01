@@ -15,7 +15,7 @@ namespace MidTermPOS
             DrugName.Add(new DrugType("Better Hair", 4.99 , "Hair growth treatment clinically proven to grow hair in 1 week guaranteed!"));
             DrugName.Add(new DrugType("Supa Strength", 9.99, "Need to look buff for your lady? Look no further, Supa Strength will give you the muscles you need to impress"));
             DrugName.Add(new DrugType("Test-O", 3.99,"Lacking energy? The drive to get things done? Test-O will boost your levels to 11"));
-            DrugName.Add(new DrugType("Proizon", 3.50, ""));
+            DrugName.Add(new DrugType("Proizon", 3.50, "Does stuff that no one really knows."));
         }
 
     }

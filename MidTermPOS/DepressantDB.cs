@@ -12,10 +12,10 @@ namespace MidTermPOS
 
         public DepressantDB()
         {
-            DrugName.Add(new DrugType("SleepEZ"));
-            DrugName.Add(new DrugType("Xanax"));
-            DrugName.Add(new DrugType("Klonopin"));
-            DrugName.Add(new DrugType("Valium"));
+            DrugName.Add(new DrugType("SleepEZ", 2.34, ""));
+            DrugName.Add(new DrugType("Xanax", 4.54, ""));
+            DrugName.Add(new DrugType("Klonopin", 9.23, ""));
+            DrugName.Add(new DrugType("Valium", 8.76, ""));
         }
     }
 }
