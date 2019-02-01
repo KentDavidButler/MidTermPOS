@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DepressantDB.cs" />
+    <Compile Include="DrugType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SteroidsDB.cs" />
+    <Compile Include="StimulantsDB.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
