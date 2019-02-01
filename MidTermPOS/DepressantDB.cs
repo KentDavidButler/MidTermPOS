@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MidTermPOS
 {
-    class DepressantDB
+     class DepressantDB
     {
         List<DrugType> DrugName = new List<DrugType>();
-
         public DepressantDB()
         {
             DrugName.Add(new DrugType("SleepEZ", 2.34, "used to treat a certain sleep problem (insomnia) in adults. If you have trouble falling asleep, it helps you fall asleep faster, so you can get a better night's rest."));

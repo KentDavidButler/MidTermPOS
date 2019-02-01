@@ -1,0 +1,7 @@
+C:\git\MidTermPOS\MidTermPOS\bin\Debug\MidTermPOS.exe.config
+C:\git\MidTermPOS\MidTermPOS\bin\Debug\MidTermPOS.exe
+C:\git\MidTermPOS\MidTermPOS\bin\Debug\MidTermPOS.pdb
+C:\git\MidTermPOS\MidTermPOS\obj\Debug\MidTermPOS.csprojAssemblyReference.cache
+C:\git\MidTermPOS\MidTermPOS\obj\Debug\MidTermPOS.csproj.CoreCompileInputs.cache
+C:\git\MidTermPOS\MidTermPOS\obj\Debug\MidTermPOS.exe
+C:\git\MidTermPOS\MidTermPOS\obj\Debug\MidTermPOS.pdb
