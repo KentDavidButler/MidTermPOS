@@ -106,6 +106,7 @@ namespace MidTermPOS
             bool run;
             if (userContinue == "y")
             {
+                Console.Clear();
                 run = true;
             }
             else if (userContinue == "n")
