@@ -42,6 +42,10 @@ namespace MidTermPOS
 
             if (Validation.IsCartEmpty(grandTotal))
             {
+                Console.WriteLine("Your cart is empty.");
+            }
+            else
+            {
                 Console.WriteLine("Your total is " + grandTotal);
                 string paymentType = PharmView.RequestPayment();
                 int selectedPayment = Validation.ValidPayment(paymentType);
@@ -50,10 +54,6 @@ namespace MidTermPOS
                 double change = Payment.PayingCash(grandTotal);
                 PharmView.Receipt(Cart);
                 PharmView.ReceiptTotal(subTotal, tax, grandTotal, change);
-            }
-            else
-            {
-                Console.WriteLine("Your cart is empty.");
             }
             Console.WriteLine("Thank you good bye");
 
