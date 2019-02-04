@@ -36,17 +36,26 @@ namespace MidTermPOS
 
             } while (Validation.PurchaseMore());
 
-			subTotal = Payment.CalculateSubTotal(Cart); //added
+            subTotal = Payment.CalculateSubTotal(Cart); //added
             tax = Payment.CalculateSalesTaxTotal(subTotal);
             grandTotal = Payment.CalculateGrandTotal(subTotal, tax);
-            Console.WriteLine("Your total is " + grandTotal);
-            string paymentType = PharmView.RequestPayment();
-            int selectedPayment = Validation.ValidPayment(paymentType);
-            Payment.MethodOfPayment(grandTotal, selectedPayment);
 
-            double change = Payment.PayingCash(grandTotal);
-            PharmView.Receipt(Cart);
-            PharmView.ReceiptTotal(subTotal, tax, grandTotal, change);
+            if (Validation.IsCartEmpty(grandTotal))
+            {
+                Console.WriteLine("Your total is " + grandTotal);
+                string paymentType = PharmView.RequestPayment();
+                int selectedPayment = Validation.ValidPayment(paymentType);
+                Payment.MethodOfPayment(grandTotal, selectedPayment);
+
+                double change = Payment.PayingCash(grandTotal);
+                PharmView.Receipt(Cart);
+                PharmView.ReceiptTotal(subTotal, tax, grandTotal, change);
+            }
+            else
+            {
+                Console.WriteLine("Your cart is empty.");
+            }
+            Console.WriteLine("Thank you good bye");
 
         }
 
@@ -71,21 +80,21 @@ namespace MidTermPOS
             DrugType selectedDrug = new DrugType("SomethingWent WRong", -1.1, "Something went wrong");
             string drug;
 
-            if (catagory == "stimulants" || catagory == "stimulant")
+            if (catagory == "stimulants" || catagory == "stimulant" || catagory =="1")
             {
                 StimulantsDB stims = new StimulantsDB();
                 drug = PharmView.DrugNameList(stims.DrugName);
                 selectedDrug = stims.DrugName[Validation.ValidDrug(drug)];
                 PharmView.DrugInfo(selectedDrug);
             }
-            else if (catagory == "steroids" || catagory == "steroid")
+            else if (catagory == "steroids" || catagory == "steroid" || catagory == "2")
             {
                 SteroidsDB ster = new SteroidsDB();
                 drug = PharmView.DrugNameList(ster.DrugName);
                 selectedDrug = ster.DrugName[Validation.ValidDrug(drug)];
                 PharmView.DrugInfo(selectedDrug);
             }
-            else if (catagory == "depressants" || catagory == "depressant")
+            else if (catagory == "depressants" || catagory == "depressant" || catagory == "3")
             {
                 DepressantDB depr = new DepressantDB();
                 drug = PharmView.DrugNameList(depr.DrugName);

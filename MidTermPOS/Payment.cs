@@ -152,7 +152,7 @@ namespace MidTermPOS
             while (paymentResult == "invalid")
             {
                 Console.WriteLine("Please enter credit card number: ");
-                string creditCardNumber = Console.ReadLine(); 
+                string creditCardNumber = Console.ReadLine();
 
                 bool cardMonth = false;
                 while (!cardMonth)
