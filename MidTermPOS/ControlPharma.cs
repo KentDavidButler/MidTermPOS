@@ -47,6 +47,7 @@ namespace MidTermPOS
             }
             else
             {
+
                 Console.WriteLine();
                 Console.WriteLine("Your total is: {0}", grandTotal.ToString("C", new CultureInfo("en-US")));
                 string paymentType = PharmView.RequestPayment();
