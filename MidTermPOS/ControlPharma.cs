@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace MidTermPOS
 {
@@ -46,7 +47,9 @@ namespace MidTermPOS
             }
             else
             {
-                Console.WriteLine("Your total is " + grandTotal);
+
+                Console.WriteLine();
+                Console.WriteLine("Your total is: {0}", grandTotal.ToString("C", new CultureInfo("en-US")));
                 string paymentType = PharmView.RequestPayment();
                 int selectedPayment = Validation.ValidPayment(paymentType);
                 Payment.MethodOfPayment(grandTotal, selectedPayment);
@@ -80,7 +83,7 @@ namespace MidTermPOS
             DrugType selectedDrug = new DrugType("SomethingWent WRong", -1.1, "Something went wrong");
             string drug;
 
-            if (catagory == "stimulants" || catagory == "stimulant" || catagory =="1")
+            if (catagory == "stimulants" || catagory == "stimulant" || catagory == "1")
             {
                 StimulantsDB stims = new StimulantsDB();
                 drug = PharmView.DrugNameList(stims.DrugName);
@@ -136,9 +139,3 @@ namespace MidTermPOS
 
     }
 }
-
-
-
-
-
-

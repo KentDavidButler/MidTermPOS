@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+
 namespace MidTermPOS
 {
     class PharmView
@@ -19,7 +21,7 @@ namespace MidTermPOS
         // PRINTING DRUG TYPES
         public static string DrugTypeList()
         {
-            List<string> DrugTypes = new List<string>() { "Stimulant", "Depressant", "Steroids" };
+            List<string> DrugTypes = new List<string>() { "Stimulant", "Steroid", "Depressant" };
             int count = 1;
             foreach (string d in DrugTypes)
             {
@@ -75,11 +77,24 @@ namespace MidTermPOS
 		
        public static void ReceiptTotal(double subTotal, double tax, double grandTotal, double change)
         {
-            Console.WriteLine();
-            Console.WriteLine($"Subtotal: ${subTotal:0.00}");
-            Console.WriteLine($"Tax: ${tax:0.00}");
-            Console.WriteLine($"Grandtotal: ${grandTotal:0.00}");
-            Console.WriteLine($"Change: ${change:0.00}");
+            {
+                string subT = "Subtotal: ";
+                string taxes = "Tax: ";
+                string grandT = "Grandtotal: ";
+                string changed = "Change: ";
+                Console.WriteLine();
+                Console.Write("{0,12}", subT);
+                Console.WriteLine("{0}", subTotal.ToString("C", new CultureInfo("en-US")));
+
+                Console.Write("{0,12}", taxes);
+                Console.WriteLine("{0}", tax.ToString("C", new CultureInfo("en-US")));
+
+                Console.Write("{0}", grandT);
+                Console.WriteLine("{0}", grandTotal.ToString("C", new CultureInfo("en-US")));
+
+                Console.Write("{0,12}", changed);
+                Console.WriteLine("{0}", change.ToString("C", new CultureInfo("en-US")));
+            }
         }
 		
 
