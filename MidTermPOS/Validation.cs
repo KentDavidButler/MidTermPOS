@@ -9,15 +9,15 @@ namespace MidTermPOS
     {
         public static bool ValidCategory(string Category)
         {
-            if (Category == "stimulant" || Category == "stimulants")
+            if (Category == "stimulant" || Category == "stimulants" || Category == "1")
             {
                 return true;
             }
-            else if (Category == "steroid" || Category == "steroids")
+            else if (Category == "steroid" || Category == "steroids" || Category == "2")
             {
                 return true;
             }
-            else if (Category == "depressants" || Category == "depressant")
+            else if (Category == "depressants" || Category == "depressant" || Category == "3")
             {
                 return true;
             }
