@@ -25,11 +25,11 @@ namespace MidTermPOS
 
         public PaymentType paymentType { get; set; }
 
-        private readonly string visaRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
-        private readonly string mastercardRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
-        private readonly string americanExpressRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
+        private readonly string visaRegex = @"^[0-9]{13,16}$";
+        private readonly string mastercardRegex = @"^[0-9]{13,16}$";
+        private readonly string americanExpressRegex = @"^[0-9]{13,16}$";
         private readonly string aeCvvRegex = @"^[0-9]{4}$";
-        private readonly string cvvRegex = @"^[0-9]{3}$";
+        private readonly string cvvRegex = @"^[0-9]{3,4}$";
         private readonly string accountNumberRegex = @"^[0-9]{10,12}$";
         private readonly string routingNumberRegex = @"^[0-9]{9}$";
 
@@ -70,7 +70,7 @@ namespace MidTermPOS
             return change;
         }
 
-        public string PayingCredit(string creditCardNumber, int month, int year, string ccv)
+        public string PayingCredit(string creditCardNumber, int month, int year, string cvv)
         {
             if (Regex.IsMatch(creditCardNumber, visaRegex))
             {
