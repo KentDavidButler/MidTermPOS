@@ -115,8 +115,7 @@ namespace MidTermPOS
                 Console.WriteLine("{0}", change.ToString("C", new CultureInfo("en-US")));
 
             }
-        }
-		
+        }		
 
         public static string RequestPayment()
         {

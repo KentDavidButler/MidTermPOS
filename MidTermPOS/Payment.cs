@@ -180,10 +180,14 @@ namespace MidTermPOS
                 if (paymentResult == "invalid")
                 {
                     Console.WriteLine("Payment not successful, please try again.");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
                 }
                 else
                 {
                     Console.WriteLine("Payment successfully processed.");
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
                 }
             }
         }
@@ -205,16 +209,16 @@ namespace MidTermPOS
 
                 paymentResult = payment.PayingCheck(bankAccountNumber, bankRoutingNumber);
 
-
-
                 if (paymentResult == "invalid")
                 {
                     Console.WriteLine("Payment unsuccessful.");
+                    Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
                 }
                 else
                 {
                     Console.WriteLine("Payment successful. Thank you!");
+                    Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
                 }
             }

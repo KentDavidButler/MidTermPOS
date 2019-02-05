@@ -56,7 +56,6 @@ namespace MidTermPOS
                 selectedPayment = Validation.ValidPayment(paymentType);
                 double change = Payment.MethodOfPayment(grandTotal, selectedPayment);
 
-                //double change = Payment.PayingCash(grandTotal);
                 PharmView.Receipt(Cart);
                 PharmView.ReceiptTotal(subTotal, tax, grandTotal, change);
             }
@@ -138,6 +137,5 @@ namespace MidTermPOS
             }
             return selectedDrug;
         }
-
     }
 }
