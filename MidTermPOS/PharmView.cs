@@ -87,7 +87,9 @@ namespace MidTermPOS
                 string route = Payment.bankAccountNumber;
                 double cash = Payment.cashTendered;
 
+                DateTime now = DateTime.Now;
 
+                Console.WriteLine($"Time of purchase: {now}");
 
                 if (ControlPharma.selectedPayment == 1)
                 {
