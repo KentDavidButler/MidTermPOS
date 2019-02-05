@@ -33,24 +33,23 @@ namespace MidTermPOS
         private readonly string accountNumberRegex = @"^[0-9]{10,12}$";
         private readonly string routingNumberRegex = @"^[0-9]{9}$";
 
-        public static bool MethodOfPayment(double total, int paymentType)
+        public static double MethodOfPayment(double total, int paymentType)
         {
             switch (paymentType)
             {
                 case 1:
-                    //PayingCash(total);
-                    return true;
+                    return PayingCash(total);
 
                 case 2:
                     Credit(total);
-                    return true;
+                    return 0.00;
 
                 case 3:
                     Check(total);
-                    return true;
+                    return 0.00;
 
                 default:
-                    return false;
+                    return 0.00;
             }
         }
 
