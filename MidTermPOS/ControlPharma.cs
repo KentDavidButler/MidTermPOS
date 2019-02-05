@@ -52,9 +52,9 @@ namespace MidTermPOS
                 Console.WriteLine("Your total is: {0}", grandTotal.ToString("C", new CultureInfo("en-US")));
                 string paymentType = PharmView.RequestPayment();
                 int selectedPayment = Validation.ValidPayment(paymentType);
-                Payment.MethodOfPayment(grandTotal, selectedPayment);
+                double change = Payment.MethodOfPayment(grandTotal, selectedPayment);
 
-                double change = Payment.PayingCash(grandTotal);
+                //double change = Payment.PayingCash(grandTotal);
                 PharmView.Receipt(Cart);
                 PharmView.ReceiptTotal(subTotal, tax, grandTotal, change);
             }

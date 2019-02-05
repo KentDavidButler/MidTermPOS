@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 
 namespace MidTermPOS
@@ -25,45 +26,46 @@ namespace MidTermPOS
 
         public PaymentType paymentType { get; set; }
 
-        private readonly string visaRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
-        private readonly string mastercardRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
-        private readonly string americanExpressRegex = @"^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$";
+        private readonly string visaRegex = @"^[0-9]{13,16}$";
+        private readonly string mastercardRegex = @"^[0-9]{13,16}$";
+        private readonly string americanExpressRegex = @"^[0-9]{13,16}$";
         private readonly string aeCvvRegex = @"^[0-9]{4}$";
-        private readonly string cvvRegex = @"^[0-9]{3}$";
+        private readonly string cvvRegex = @"^[0-9]{3,4}$";
         private readonly string accountNumberRegex = @"^[0-9]{10,12}$";
         private readonly string routingNumberRegex = @"^[0-9]{9}$";
 
-        public static bool MethodOfPayment(double total, int paymentType)
+        public static double MethodOfPayment(double total, int paymentType)
         {
             switch (paymentType)
             {
                 case 1:
-                    //PayingCash(total);
-                    return true;
+                    return PayingCash(total);
 
                 case 2:
                     Credit(total);
-                    return true;
+                    return 0.00;
 
                 case 3:
                     Check(total);
-                    return true;
+                    return 0.00;
 
                 default:
-                    return false;
+                    return 0.00;
             }
         }
 
         public static double PayingCash(double grandTotal)
         {
             double cashTendered = 0;
-            Console.WriteLine("Enter amount you wish to tender.");
+            Console.Write("Enter amount you wish to tender: $");
             cashTendered = Double.Parse(Console.ReadLine());
 
             while (grandTotal > cashTendered)
             {
+                double changes = grandTotal - cashTendered;
                 Console.WriteLine("Sorry, that's not enough.");
-                Console.Write("We need more than that. Please give more: ");
+                Console.WriteLine("You are short: {0}", changes.ToString("C", new CultureInfo("en-US")));
+                Console.Write("Please enter more: ");
                 cashTendered += Double.Parse(Console.ReadLine());
 
             }
@@ -71,7 +73,7 @@ namespace MidTermPOS
             return change;
         }
 
-        public string PayingCredit(string creditCardNumber, int month, int year, string ccv)
+        public string PayingCredit(string creditCardNumber, int month, int year, string cvv)
         {
             if (Regex.IsMatch(creditCardNumber, visaRegex))
             {
@@ -130,10 +132,10 @@ namespace MidTermPOS
                 {
                     return "Check Valid!";
                 }
-                Console.WriteLine("Enter bank routing number.");
+                Console.WriteLine("Enter bank routing number: ");
                 return "invalid";
             }
-            Console.WriteLine("Enter bank account number.");
+            Console.WriteLine("Enter bank account number: ");
             return "invalid";
         }
 
@@ -151,24 +153,24 @@ namespace MidTermPOS
 
             while (paymentResult == "invalid")
             {
-                Console.WriteLine("Please enter credit card number: ");
+                Console.Write("Please enter credit card number (13-16 Digits): ");
                 string creditCardNumber = Console.ReadLine();
 
                 bool cardMonth = false;
                 while (!cardMonth)
                 {
-                    Console.WriteLine("Enter expiration month (e.g. 2 for May): ");
+                    Console.Write("Enter expiration month (e.g. 5 for May): ");
                     cardMonth = int.TryParse(Console.ReadLine(), out month);
                 }
 
                 bool cardYear = false;
                 while (!cardYear)
                 {
-                    Console.WriteLine("Enter expiration year (e.g. 2019): ");
+                    Console.Write("Enter expiration year (e.g. 2019): ");
                     cardYear = int.TryParse(Console.ReadLine(), out year);
                 }
 
-                Console.WriteLine("Enter cvv: ");
+                Console.Write("Enter cvv: ");
                 cvv = Console.ReadLine();
 
                 paymentResult = payment.PayingCredit(creditCardNumber, month, year, cvv);
@@ -192,10 +194,10 @@ namespace MidTermPOS
 
             while (paymentResult == "invalid")
             {
-                Console.WriteLine("Enter bank account number: ");
+                Console.Write("Enter bank account number (10-12 Digits): ");
                 string bankAccountNumber = Console.ReadLine();
 
-                Console.WriteLine("Enter bank routing nmber: ");
+                Console.Write("Enter bank routing nmber (9 digits): ");
                 string bankRoutingNumber = Console.ReadLine();
 
                 paymentResult = payment.PayingCheck(bankAccountNumber, bankRoutingNumber);
