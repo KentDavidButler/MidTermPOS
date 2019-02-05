@@ -78,11 +78,14 @@ namespace MidTermPOS
 
         public string PayingCredit(string creditCardNumber, int month, int year, string cvv)
         {
-            DateTime now = DateTime.Now;
             if (Regex.IsMatch(creditCardNumber, visaRegex))
             {
-                if (month >= now.Month && year >= now.Year)
+                if (month > 0 && year >= 2019)
                 {
+                    if (month < 2 && year < 2020)
+                    {
+                        return "invalid";
+                    }
                     if (Regex.IsMatch(cvv, cvvRegex))
                     {
                         return "Visa";
