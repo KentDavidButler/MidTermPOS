@@ -82,6 +82,10 @@ namespace MidTermPOS
             {
                 if ((month > 0 && month <= 12) && (year >= 2019))
                 {
+                    if (month < 2 && year <2020)
+                    {
+                        return "invalid";
+                    }
                     if (Regex.IsMatch(cvv, cvvRegex))
                     {
                         return "Visa";
