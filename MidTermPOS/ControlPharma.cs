@@ -9,6 +9,8 @@ namespace MidTermPOS
 {
     class ControlPharma
     {
+        public static string paymentType;
+        public static int selectedPayment = 0;
         public static void PharmaStart()
         {
             string catagory = " ";
@@ -50,8 +52,8 @@ namespace MidTermPOS
 
                 Console.WriteLine();
                 Console.WriteLine("Your total is: {0}", grandTotal.ToString("C", new CultureInfo("en-US")));
-                string paymentType = PharmView.RequestPayment();
-                int selectedPayment = Validation.ValidPayment(paymentType);
+                paymentType = PharmView.RequestPayment();
+                selectedPayment = Validation.ValidPayment(paymentType);
                 double change = Payment.MethodOfPayment(grandTotal, selectedPayment);
 
                 //double change = Payment.PayingCash(grandTotal);

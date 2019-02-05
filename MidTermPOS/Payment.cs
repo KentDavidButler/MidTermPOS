@@ -11,6 +11,9 @@ namespace MidTermPOS
 {
     class Payment
     {
+        public static string creditCardNumber;
+        public static string bankAccountNumber;
+        public static double cashTendered;
         readonly int month = 0;
         readonly int year = 0;
         readonly string cvv = "";
@@ -56,7 +59,7 @@ namespace MidTermPOS
 
         public static double PayingCash(double grandTotal)
         {
-            double cashTendered = 0;
+            cashTendered = 0;
             Console.Write("Enter amount you wish to tender: $");
             cashTendered = Double.Parse(Console.ReadLine());
 
@@ -132,10 +135,10 @@ namespace MidTermPOS
                 {
                     return "Check Valid!";
                 }
-                Console.WriteLine("Enter bank routing number: ");
+                Console.WriteLine("Invalid routing number");
                 return "invalid";
             }
-            Console.WriteLine("Enter bank account number: ");
+            Console.WriteLine("Invalid account number");
             return "invalid";
         }
 
@@ -154,7 +157,7 @@ namespace MidTermPOS
             while (paymentResult == "invalid")
             {
                 Console.Write("Please enter credit card number (13-16 Digits): ");
-                string creditCardNumber = Console.ReadLine();
+                creditCardNumber = Console.ReadLine();
 
                 bool cardMonth = false;
                 while (!cardMonth)
@@ -195,18 +198,24 @@ namespace MidTermPOS
             while (paymentResult == "invalid")
             {
                 Console.Write("Enter bank account number (10-12 Digits): ");
-                string bankAccountNumber = Console.ReadLine();
+                bankAccountNumber = Console.ReadLine();
 
-                Console.Write("Enter bank routing nmber (9 digits): ");
+                Console.Write("Enter bank routing number (9 Digits): ");
                 string bankRoutingNumber = Console.ReadLine();
 
                 paymentResult = payment.PayingCheck(bankAccountNumber, bankRoutingNumber);
 
-                Console.WriteLine("Payment successful. Thank you!");
+
 
                 if (paymentResult == "invalid")
                 {
                     Console.WriteLine("Payment unsuccessful.");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("Payment successful. Thank you!");
+                    Console.ReadKey();
                 }
             }
         }

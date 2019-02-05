@@ -83,6 +83,25 @@ namespace MidTermPOS
                 string grandT = "Grandtotal: ";
                 string changed = "Change: ";
                 Console.WriteLine();
+                string card = Payment.creditCardNumber;
+                string route = Payment.bankAccountNumber;
+                double cash = Payment.cashTendered;
+
+
+
+                if (ControlPharma.selectedPayment == 1)
+                {
+                    Console.WriteLine("Paid by Cash {0}", cash.ToString("C", new CultureInfo("en-US")));
+                }
+                else if (ControlPharma.selectedPayment == 2)
+                {
+                    Console.WriteLine("Paid by Credit " + Convert(card));
+                }
+                else if (ControlPharma.selectedPayment == 3)
+                {
+                    Console.WriteLine("Paid by Check " + Convert(route));
+                }
+                Console.WriteLine();
                 Console.Write("{0,12}", subT);
                 Console.WriteLine("{0}", subTotal.ToString("C", new CultureInfo("en-US")));
 
@@ -94,6 +113,7 @@ namespace MidTermPOS
 
                 Console.Write("{0,12}", changed);
                 Console.WriteLine("{0}", change.ToString("C", new CultureInfo("en-US")));
+
             }
         }
 		
@@ -114,6 +134,12 @@ namespace MidTermPOS
         {
             string input = Console.ReadLine();
             return input;
+        }
+
+        public static string Convert(string convert)
+        {
+            string converted = new String('X', convert.Length - 4) + convert.Substring(convert.Length - 4);
+            return converted;
         }
     }
 }
