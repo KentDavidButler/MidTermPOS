@@ -126,15 +126,26 @@ namespace MidTermPOS
         private static DrugType AddtoCart(DrugType selectedDrug, int bottleSize)
         {
             string input = PharmView.AddToCart();
-            if (input.ToLower() == "y")
+            do
             {
-                selectedDrug.PillCount = bottleSize;
-                Console.WriteLine("Item added to cart");
-            }
-            else
-            {
-                Console.WriteLine("Item not added to cart");
-            }
+                if (input.ToLower() == "y")
+                {
+                    selectedDrug.PillCount = bottleSize;
+                    Console.WriteLine("Item added to cart");
+                    break;
+                }
+                else if (input.ToLower() == "n")
+                {
+                    Console.WriteLine("Item not added to cart");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("That is not an option.");
+                    input = PharmView.AddToCart();
+                }
+            } while (true);
+
             return selectedDrug;
         }
     }
