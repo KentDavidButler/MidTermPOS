@@ -105,6 +105,7 @@ namespace MidTermPOS
             Console.WriteLine("Press 1: for Cash");
             Console.WriteLine("Press 2: for Credit");
             Console.WriteLine("Press 3: for Check");
+            Console.Write("Select Payment: ");            
             return Input();
         }
 

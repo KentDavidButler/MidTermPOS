@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 
 namespace MidTermPOS
@@ -56,13 +57,15 @@ namespace MidTermPOS
         public static double PayingCash(double grandTotal)
         {
             double cashTendered = 0;
-            Console.WriteLine("Enter amount you wish to tender.");
+            Console.Write("Enter amount you wish to tender: $");
             cashTendered = Double.Parse(Console.ReadLine());
 
             while (grandTotal > cashTendered)
             {
+                double changes = grandTotal - cashTendered;
                 Console.WriteLine("Sorry, that's not enough.");
-                Console.Write("We need more than that. Please give more: ");
+                Console.WriteLine("You are short: {0}", changes.ToString("C", new CultureInfo("en-US")));
+                Console.Write("Please enter more: ");
                 cashTendered += Double.Parse(Console.ReadLine());
 
             }
@@ -129,10 +132,10 @@ namespace MidTermPOS
                 {
                     return "Check Valid!";
                 }
-                Console.WriteLine("Enter bank routing number.");
+                Console.WriteLine("Enter bank routing number: ");
                 return "invalid";
             }
-            Console.WriteLine("Enter bank account number.");
+            Console.WriteLine("Enter bank account number: ");
             return "invalid";
         }
 
@@ -150,24 +153,24 @@ namespace MidTermPOS
 
             while (paymentResult == "invalid")
             {
-                Console.WriteLine("Please enter credit card number: ");
+                Console.Write("Please enter credit card number (13-16 Digits): ");
                 string creditCardNumber = Console.ReadLine();
 
                 bool cardMonth = false;
                 while (!cardMonth)
                 {
-                    Console.WriteLine("Enter expiration month (e.g. 2 for May): ");
+                    Console.Write("Enter expiration month (e.g. 5 for May): ");
                     cardMonth = int.TryParse(Console.ReadLine(), out month);
                 }
 
                 bool cardYear = false;
                 while (!cardYear)
                 {
-                    Console.WriteLine("Enter expiration year (e.g. 2019): ");
+                    Console.Write("Enter expiration year (e.g. 2019): ");
                     cardYear = int.TryParse(Console.ReadLine(), out year);
                 }
 
-                Console.WriteLine("Enter cvv: ");
+                Console.Write("Enter cvv: ");
                 cvv = Console.ReadLine();
 
                 paymentResult = payment.PayingCredit(creditCardNumber, month, year, cvv);
@@ -191,10 +194,10 @@ namespace MidTermPOS
 
             while (paymentResult == "invalid")
             {
-                Console.WriteLine("Enter bank account number: ");
+                Console.Write("Enter bank account number (10-12 Digits): ");
                 string bankAccountNumber = Console.ReadLine();
 
-                Console.WriteLine("Enter bank routing nmber: ");
+                Console.Write("Enter bank routing nmber (9 digits): ");
                 string bankRoutingNumber = Console.ReadLine();
 
                 paymentResult = payment.PayingCheck(bankAccountNumber, bankRoutingNumber);
